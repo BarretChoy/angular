@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zhiling">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script src="angular.js"></script>
+	
+</head>
+<body>
+	<div ng-controller="headerCtrl">
+		<header>
+			{{title}}
+		</header>
+		<a href="">{{login}}</a>
+	</div>
+</body>
+<script>
+	var app = angular.module("zhiling",[]);
+	app.controller("headerCtrl",function($scope){
+		$scope.title = "莎莎网"
+		$scope.login = "登录"
+	})
+</script>
+</html>
