@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shashaApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-controller="indexCtrl">
+	<input ng-model="name">
+	<p ng-bind="name"></p>
+</body>
+<script src="angular.js"></script>
+<script>
+	var app = angular.module("shashaApp",[]);
+	app.controller("indexCtrl",function($scope){
+		$scope.name = "Barret"
+	})
+</script>
+</html>

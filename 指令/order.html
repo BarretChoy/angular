@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="order">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-controller="orderCtrl">
+		<p ng-bind-html="html"></p>
+		<button ng-click="Click()">{{button}}</button>
+		<input ng-model="text">
+		<ul>
+			<li ng-repeat="arr in arrs">{{arr.name}}  {{arr.age}}</li>
+		</ul>
+		<select na-model="age">
+			<option ng-repeat="arr in arrs" ng-value="arr.age">{{arr.name}}</option>
+		</select>
+	</div>
+</body>
+<script src="angular.js"></script>
+<script>
+	var app = angular.module("order",[]);
+	app.controller("orderCtrl",function($scope,$sce){
+		$scope.html="<p>123<span>456</span></p>"
+		$scope.html=$sce.trustAsHtml($scope.html);
+		$scope.button='ok';
+		$scope.text = "";
+		$scope.Click = function(){
+			$scope.button='ko';
+			console.log($scope.text)
+		}
+		$scope.age = 25;
+		$scope.arrs = [{
+			name:"Barret",
+			age:18
+		},{
+			name:"Aika",
+			age:19
+		},{
+			name:"Jim",
+			age:20
+		}]
+	})
+</script>
+</html>

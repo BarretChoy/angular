@@ -8,17 +8,47 @@
 </head>
 <body>
 	<div ng-controller="headerCtrl">
+
+	<!-- V层 -->
 		<header>
 			{{title}}
 		</header>
 		<a href="">{{login}}</a>
+		<p style="color:{{obj.color}};">{{obj.skill}}</p>
+		<p style="color:{{arr[2]}};font-size: {{num+'px'}}">{{title}}</p>
+
+
+		<p style="display: {{!bool?'block':'none'}};">看我有没有</p>
+		<p>{{bool?"你就是真":"你就是假"}}</p>
+		<button ng-click="bool=!bool">点击</button>
+
+
+
+		<!-- <p style="display: {{!bool?'block':'none'}};">是否显示</p>
+		<p>{{bool?"你就是真":"你就是假"}}</p>
+		<button ng-click="bool=!bool">Ok</button> -->
 	</div>
 </body>
 <script>
+	//需要以来的模块 
 	var app = angular.module("zhiling",[]);
+
+	// C层
 	app.controller("headerCtrl",function($scope){
+
+
+		// M层
 		$scope.title = "莎莎网"
 		$scope.login = "登录"
+		$scope.color = "red"
+		$scope.obj = {
+			skill:"sleep",
+			color:"red"
+		};
+		$scope.arr = ["green","blue","yellow"]
+
+		$scope.num=20;
+		// $scope.bool = true;
 	})
 </script>
 </html>

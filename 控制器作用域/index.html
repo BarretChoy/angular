@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-controller="fatherCtrl" style="border:1px solid blue;">
+		<p>{{name}}</p>
+		<button ng-click="toChild()">给子元素的</button>
+		<button ng-click="toBrother()">给兄弟元素的</button>
+		<div ng-controller="childCtrl" style="border:1px solid yellow;margin: 10px;">
+			<p>{{name}}</p>
+			<button ng-click="toFather()">给父元素</button>
+		</div>
+	</div>
+	<div ng-controller="brotherCtrl" style="border:1px solid red";>
+		<p>{{name}}</p>
+	</div>
+</body>
+<script src="angular.js"></script>
+<script>
+	var app= angular.module('ngApp',[]);
+	app.controller("fatherCtrl",function($scope){
+		$scope.name="Barret"
+		// 给子元素广播事件
+		$scope.toChild = function(){
+			$scope.$broadcast("to-child","子元素你好");
+		}
+		$scope.toBrother = function(){
+			$scope.$emit("to-brother","兄弟元素你好");
+		}
+		$scope.$on("to-father",function(evt,data){
+			console.log(data)
+		})
+	})
+	app.controller("brotherCtrl",function($scope,$rootScope){
+		$scope.name="aer";
+		$rootScope.$on("to-brother",function(evt,data){
+			console.log(data)
+		})
+	})
+	app.controller("childCtrl",function($scope){
+		$scope.name = "xiaocai"
+		$scope.$on("to-child",function(evt,data){
+			console.log(data)
+		})
+		$scope.toFather = function(){
+			$scope.$emit("to-father","父元素你好");
+		}
+	})
+</script>
+</html>
